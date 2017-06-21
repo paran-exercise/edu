@@ -1,5 +1,5 @@
 package com.paran.chapter1;
-
+//jjs
 public class HelloJava{
 	// 생성자 함수는 인스턴스를 생성하면서 실행되는 함수
 	String helloStr = "Hello! World.";
