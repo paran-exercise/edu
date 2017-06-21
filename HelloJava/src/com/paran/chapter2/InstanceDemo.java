@@ -13,7 +13,7 @@ public class InstanceDemo {
 		hpPrinter.print(msg);
 		epsonPrinter.print(msg);
 		
-		epsonPrinter.printA(msg, true);
+		//epsonPrinter.printA(msg, true);
 		
 		Printer.printA(msg, false);
 	}
