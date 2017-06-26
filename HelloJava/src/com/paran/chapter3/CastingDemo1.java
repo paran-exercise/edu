@@ -21,7 +21,7 @@ public class CastingDemo1 {
 		
 	// 객체 생성// 	
 			
-		CastingDemo obj = new CastingDemo1();
+		CastingDemo1 obj = new CastingDemo1();
 			
 	// 객체사용할 변수 대입// 	
 		
