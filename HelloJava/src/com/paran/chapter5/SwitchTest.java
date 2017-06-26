@@ -2,7 +2,7 @@ package com.paran.chapter5;
 
 import java.io.*;
 
-/*
+/*========================================
  *  Switch construction
  *
  *  switch(n)
@@ -17,6 +17,20 @@ import java.io.*;
  *   . 
  *   .
  * default; 
+ * 
+ * ======================================
+ * Another Switch construction
+ * 
+ * switch(n)
+ * {
+ * case 1: case 2: case 3:
+ * ..... 
+ * break;
+ * 
+ * case 4: case 5: case 6: 
+ * .....
+ * break; 
+ * 
  * 
  * 
  */
