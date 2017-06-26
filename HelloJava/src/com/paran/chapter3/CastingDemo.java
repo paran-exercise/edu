@@ -8,12 +8,12 @@ public class CastingDemo {
 	public static void main(String[] args) {
 		
 		CastingDemo de = new CastingDemo();
-		de.num1=10000000000; //인스턴스 변수
+		de.num1=10000000000; 
 		
 		
-		int num2 = 10000000000; // 멤버변수
+		int num2 = 10000000000; 
 		
-		num3 = 12.45; // 클래스변수
+		num3 = 12.45;
 		
 	
 
