@@ -13,7 +13,7 @@ public class CastingDemo {
 			js.num1 = 10000000;
 			
 			System.out.println(js.num1);
-			
+			 
 			
 		}
 }
