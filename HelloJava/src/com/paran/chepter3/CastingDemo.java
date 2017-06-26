@@ -6,7 +6,7 @@ public class CastingDemo {
 		long num2;
 		float num3;
 		
-		public static void printMsg(String msg){
+		public static void main(String[] args){
 			
 			CastingDemo js = new CastingDemo();
 			
