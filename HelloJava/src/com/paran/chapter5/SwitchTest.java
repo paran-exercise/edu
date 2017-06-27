@@ -3,7 +3,7 @@ package com.paran.chapter5;
 import java.io.*;
 
 /*========================================
- *  Switch construction
+/   Switch construction
  *
  *  switch(n)
  *  {
@@ -33,10 +33,12 @@ import java.io.*;
  * 
  * 
  * 
- */
 
-
-/* 
+ *
+ *
+ *
+ *
+* 
  *  추가로 만들어 보고 싶은  것
  * 
  *  만약 입력 값이 1,2가 들어왔을 때   
