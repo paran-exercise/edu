@@ -10,12 +10,11 @@ public class CastingDemo {
 		
 		CastingDemo de = new CastingDemo();
 		
-		de.num1=10000000000;		
-		de.num2=10000000000;		
-		de.num3=12.45;
+		de.num1=1000000000;		
+		de.num2=1000000000000000000L;		
+		de.num3=12.45f;
 					
 
 	}
-			
-	
+				
 }
