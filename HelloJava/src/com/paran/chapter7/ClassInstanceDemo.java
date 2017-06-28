@@ -15,9 +15,14 @@ public class ClassInstanceDemo {
 		i++;
 		i++;
 		i++;
-		
-		if ( i > 10)
+		i++;
+		i++;
+		i++;
+		obj.stuName="dd";
+		if ( i > 10){
 			System.out.println(obj.getIsMilSer());
+		}
+			
 		
 	}
 
