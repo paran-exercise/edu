@@ -1,16 +1,16 @@
-package com.paran.chapter5;
+package com.paran.chapter7;
 
 public class Student{
-		 String name;	  // 이름
-		 String stuId;     // 학번
-		 boolean isMilSer; // 전역여부
+		String name;	  // 이름
+		String stuId;     // 학번
+		protected  boolean isMilSer; // 전역여부
 		
 //	Scanner sc = new Scanner(System.in);
 		
 //		public Student(){
 //			
 //		} 
-			
+					
 		public Student(String name,String stuId,boolean isMilSer){
 			
 			this.name = name;
