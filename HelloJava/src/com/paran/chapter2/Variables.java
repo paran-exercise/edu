@@ -19,12 +19,12 @@ public class Variables {
 	}
 }
 
-class Animal {
+class Animals {
 	public void breath(){
 	   System.out.println("동물 숨쉬기");
 	}
 }
-class Persons extends Animal {
+class Persons extends Animals {
 	public void breath() {
 		System.out.println("사람 숨쉬기");
 	}
