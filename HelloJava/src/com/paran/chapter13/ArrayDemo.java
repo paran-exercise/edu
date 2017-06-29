@@ -17,9 +17,18 @@ public class ArrayDemo {
 		
 		reverseArrValue(beforeArray);
 		
-		sortArrValue(beforeArray,1);
+		sortArrValue(beforeArray, 1);
 		
 		System.out.println("\n");
+		
+		for(int i=0;i < beforeArray.length;i++){
+			System.out.print(beforeArray[i]+" ");			
+		}
+		
+		sortArrValue(beforeArray, 2);
+		
+		System.out.println("\n");
+		
 		for(int i=0;i < beforeArray.length;i++){
 			System.out.print(beforeArray[i]+" ");			
 		}
