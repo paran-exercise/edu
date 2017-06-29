@@ -1,5 +1,5 @@
 package com.paran.chapter7;
-import com.paran.chapter5.Student;
+import com.paran.chapter7.Student;
 
 public class ClassInstanceDemo {
 	public static void main(String[] args) {
