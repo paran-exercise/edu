@@ -35,13 +35,13 @@ public class ArrayDemo {
 		
 	}
 	
-	static void reverseArrValue(int[] Array){
+	public static void reverseArrValue(int[] Array){
 		for(int i=Array.length-1;i>=0;i--){
 			System.out.print(Array[i]+" ");
 		}
 	}
 	
-	static void sortArrValue(int[] Array, int ascendingDecending){
+	public static void sortArrValue(int[] Array, int ascendingDecending){
 		int buffer=0;
 		for(int i=0; i < Array.length-1; i++){
 			for(int j=0; j < Array.length-1; j++){
