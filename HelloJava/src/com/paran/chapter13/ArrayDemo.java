@@ -4,58 +4,61 @@ public class ArrayDemo {
 	
 	public static void main(String[] args){
 		
-		int[] beforeArray = new int[10];
-		for(int i=0; i < beforeArray.length ; i++){
-			beforeArray[i]=i+1;
+		int[] valArray = new int[10];
+		for(int i=0; i < valArray.length ; i++){
+			valArray[i]=i+1;
 		}
 		
-		for(int i=0;i < beforeArray.length;i++){
-			System.out.print(beforeArray[i]+" ");			
+//		for(int i=0;i < valArray.length;i++){
+//			System.out.print(valArray[i]+" ");			
+//		}
+		
+		//System.out.println("\n");
+		
+		reverseArrValue(valArray);
+		for(int i=0;i < valArray.length;i++){
+			System.out.print(valArray[i]+" ");			
 		}
 		
-		System.out.println("\n");
-		
-		reverseArrValue(beforeArray);
-		
-		sortArrValue(beforeArray, 1);
-		
-		System.out.println("\n");
-		
-		for(int i=0;i < beforeArray.length;i++){
-			System.out.print(beforeArray[i]+" ");			
+		sortArrValue(valArray, 2);
+						
+		for(int i=0;i < valArray.length;i++){
+			System.out.print(valArray[i]+" ");			
 		}
 		
-		sortArrValue(beforeArray, 2);
-		
-		System.out.println("\n");
-		
-		for(int i=0;i < beforeArray.length;i++){
-			System.out.print(beforeArray[i]+" ");			
+		sortArrValue(valArray, 1);
+				
+		for(int i=0; i < valArray.length;i++){
+			System.out.print(valArray[i]+" ");			
 		}
 		
 	}
 	
-	public static void reverseArrValue(int[] Array){
-		for(int i=Array.length-1;i>=0;i--){
-			System.out.print(Array[i]+" ");
+	public static void reverseArrValue(int[] array){
+		int buffer = 0;
+		for(int i = 0 , j = array.length-1;i<array.length/2;i++,j--){
+			buffer=array[i];
+			array[i]=array[j];
+			array[j] = buffer;
 		}
+		
 	}
 	
-	public static void sortArrValue(int[] Array, int ascendingDecending){
+	public static void sortArrValue(int[] array, int ascendingDecending){
 		int buffer=0;
-		for(int i=0; i < Array.length-1; i++){
-			for(int j=0; j < Array.length-1; j++){
+		for(int i=0; i < array.length-1; i++){
+			for(int j=0; j < array.length-1; j++){
 				if(ascendingDecending == 1){
-					if(Array[j] < Array[j+1]){
-						buffer = Array[j];
-						Array[j] = Array[j+1];
-						Array[j+1] = buffer;
+					if(array[j] < array[j+1]){
+						buffer = array[j];
+						array[j] = array[j+1];
+						array[j+1] = buffer;
 					}
 				}else{
-					if(Array[j] > Array[j+1]){
-						buffer = Array[j+1];
-						Array[j+1] = Array[j];
-						Array[j] = buffer;
+					if(array[j] > array[j+1]){
+						buffer = array[j+1];
+						array[j+1] = array[j];
+						array[j] = buffer;
 					}
 				}
 				
