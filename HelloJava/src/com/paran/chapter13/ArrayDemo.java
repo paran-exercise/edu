@@ -1,37 +1,36 @@
 package com.paran.chapter13;
 
 public class ArrayDemo {
+	int[][] dataMatrix ;
+	
+	public void initMatrixArr(int col, int row){
+		dataMatrix = new int[col][row];
+		int incrementValue = 0;
+		for(int i = 0; i < dataMatrix.length; i++){
+			for(int j = 0; j < dataMatrix[i].length; j++){
+				dataMatrix[i][j] = ++incrementValue; 
+			}			
+		}
+	}
+	
+	public void transformArrSize(){
+		dataMatrix[3] = new int[]{0,0,0,0,0,0,0,0};
+	}
 	
 	public static void main(String[] args){
+		ArrayDemo obj = new ArrayDemo();
+		obj.initMatrixArr(4, 4);
+		obj.transformArrSize();
+		int[] valArray = new int[5];
 		
-		int[] valArray = new int[10];
-		for(int i=0; i < valArray.length ; i++){
-			valArray[i]=i+1;
+		for(int i = 0 ; i < valArray.length; i++){
+			valArray[i]=(int)(Math.random()*10) + 1;
 		}
 		
-//		for(int i=0;i < valArray.length;i++){
-//			System.out.print(valArray[i]+" ");			
-//		}
-		
-		//System.out.println("\n");
-		
-		reverseArrValue(valArray);
-		for(int i=0;i < valArray.length;i++){
-			System.out.print(valArray[i]+" ");			
+		bubbleSort(valArray,2);
+		for(int i = 0 ; i < valArray.length; i++){
+			System.out.print(valArray[i]+" ");
 		}
-		
-		sortArrValue(valArray, 2);
-						
-		for(int i=0;i < valArray.length;i++){
-			System.out.print(valArray[i]+" ");			
-		}
-		
-		sortArrValue(valArray, 1);
-				
-		for(int i=0; i < valArray.length;i++){
-			System.out.print(valArray[i]+" ");			
-		}
-		
 	}
 	
 	public static void reverseArrValue(int[] array){
@@ -44,7 +43,7 @@ public class ArrayDemo {
 		
 	}
 	
-	public static void sortArrValue(int[] array, int ascendingDecending){
+	public static void bubbleSort(int[] array, int ascendingDecending){
 		int buffer=0;
 		for(int i=0; i < array.length-1; i++){
 			for(int j=0; j < array.length-1; j++){
@@ -65,8 +64,34 @@ public class ArrayDemo {
 			}			
 		}
 	}
+	
+	public static void seletionSort(int[] array){
+		int minIdx, buffer;
+		
+		for(int i = 0; i < array.length-1 ; i++){
+			minIdx = i;
+			for(int j = i + 1; j <array.length;j++){
+				if(array[j]<array[minIdx]){
+					minIdx = j;
+				}
+			}
+			buffer = array[minIdx];
+			array[minIdx] = array[i];
+			array[i] = buffer;			
+		}
+	}
+	
+	public static void insertSort(int[] array){
+		int buffer;
+		for(int i=1; i<array.length;i++){
+			buffer=array[i];
+			int j=i-1;
+			while(j>=0 && buffer<array[j]){
+				array[j+1]=array[j];
+				j--;
+			}
+			array[j+1] = buffer;
+		}
+	}
+	
 }
-//int 배열 크기 10, 초기값 1~10할당
-//return type : void
-//parameter : int[] Array
-//reverseArrayValue
