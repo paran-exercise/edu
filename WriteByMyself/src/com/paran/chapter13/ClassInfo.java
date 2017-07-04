@@ -10,41 +10,37 @@ public class ClassInfo {
 	static ArrayList<Student> stuList = new ArrayList<Student>();
 
 	public static void main(String[] args)throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader("c:/dev/asdq.txt"));
-		int lineCount=0;
-		String line;
-		String[] splitLine = new String[10]; 		
+		int lineCount = setStuList();		
 		
-		while((line = br.readLine()) != null){
-			splitLine = line.split("_");
-			
-			if(splitLine[3].equals("Fore")){
-				stuList.add(new ForeStudent(splitLine[4]));
-			}else{
-				stuList.add(new DomeStudent(splitLine[4]));
-			}
-			lineCount++;
-		}
-		
-		br.close();
-		br = new BufferedReader(new FileReader("c:/dev/asd.txt"));
-		
-		for(int i=0; (line = br.readLine()) != null; i++){		
-			splitLine = line.split("_");
-			
-			stuList.get(i).setName(splitLine[0]);
-            stuList.get(i).setStuID(splitLine[1]);
-            stuList.get(i).avgScore(splitLine[4]);
-            stuList.get(i).resi = splitLine[2];
-		}
-		br.close();
-		
-		
-		Collections.sort(stuList);
 		for(int i=0; i<lineCount; i++){
 			(stuList.get(i)).showInfo();
 		}
-	}	
+	}
+	
+	public static int setStuList()throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader("C:/dev/workspace/suffering.txt"));
+		int i=0;
+		String line;
+		String[] splitLine = new String[10];
+		
+		for(i=0; (line = br.readLine()) != null; i++){
+			splitLine = line.split("_");
+			
+			if(splitLine[3].equals("Foreiner")){
+				stuList.add(new ForeStudent(splitLine[2]));
+			}else{
+				stuList.add(new DomeStudent(splitLine[2]));
+			}
+			
+			stuList.get(i).setName(splitLine[0]);
+            stuList.get(i).setStuID(splitLine[1]);
+            stuList.get(i).avgScore(splitLine[4], splitLine[5], splitLine[6]);
+            stuList.get(i).resi = splitLine[3];            
+		}
+		Collections.sort(stuList);
+		br.close();
+		return i; 
+	}
 }
 
 //=======================abstract==============================
@@ -64,11 +60,11 @@ abstract class Student implements Comparable<Student>{
 	public void setStuID(String stuID){
 		this.stuID = stuID;
 	}
-	public void avgScore(String scores){
-		this.engScore = Integer.parseInt(scores.substring(0, 2));
-		this.korScore = Integer.parseInt(scores.substring(2, 4));
-		this.proScore = Integer.parseInt(scores.substring(4, 6));
-		this.avg = (engScore+korScore+proScore)/3; 
+	public void avgScore(String engScore, String korScore, String proScore){
+		this.engScore = Integer.parseInt(engScore);
+		this.korScore = Integer.parseInt(korScore);
+		this.proScore = Integer.parseInt(proScore);
+		avg = (this.engScore+this.korScore+this.proScore)/3; 
 	}
 	public int compareTo(Student stu){
 		return this.avg - stu.avg;
@@ -84,7 +80,8 @@ class DomeStudent extends Student{
 		resiID = ID;
 	}	
 	public void showInfo(){
-		System.out.println("name =>"+name+" stuID =>"+stuID+" resiID =>"+resiID+" resi =>"+resi+" Average =>"+avg);
+		System.out.print("name =>"+name+"\tstuID =>"+stuID+"\tresiID =>"+resiID+"\t"+resi);
+		System.out.println("\tEnglish =>"+engScore+"\tKorean =>"+korScore+"\tProgramming =>"+proScore+"\tAverage =>"+avg);
 	}	
 }
 
@@ -95,6 +92,17 @@ class ForeStudent extends Student{
 		foreignID = ID;
 	}
 	public void showInfo(){
-		System.out.println("name =>"+name+" stuID =>"+stuID+" foreignID =>"+foreignID+" resi =>"+resi+" Average =>"+avg);
+		System.out.print("name =>"+name+"\tstuID =>"+stuID+"\tforeignID =>"+foreignID+"\t"+resi);
+		System.out.println("\tEnglish =>"+engScore+"\tKorean =>"+korScore+"\tProgramming =>"+proScore+"\tAverage =>"+avg);
 	}	
 }
+
+/*
+ * suffering.txt
+Jacob_13-76087320_940-519-098_Foreigner_12_34_56
+Kim_12-76877320_940519-0987654_Resident_78_90_11
+Robert_17-76077328_190-987-654_Foreigner_21_41_51
+Kong_11-96877820_951112-0987654_Resident_90_78_48
+Mcmuffin_18-76078320_695-947-224_Foreigner_28_49_23
+Pain_19-76077380_960-219-098_Foreigner_90_26_71 
+*/ 
