@@ -2,6 +2,7 @@ package com.paran.chapter21;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,10 +13,10 @@ public class ClassInfo {
 	String stuId;
 	int korScore;
 	int engScore;
-	String domeFore;
+	String resiId;
 	
 	public void initStudent(){
-		String filePath = "C:\\Users\\2강005\\git\\edu\\HelloJava\\src\\com\\paran\\chapter21\\classinformation.txt";
+		String filePath = "C:\\Users\\mycub\\git\\edu\\HelloJava\\src\\com\\paran\\chapter21\\classinformation.txt";
 		ClassInfo obj = new ClassInfo();
 		try{
 			BufferedReader readClassInfo = new BufferedReader(new FileReader(filePath));
@@ -29,15 +30,15 @@ public class ClassInfo {
 				name = read[1];
 				korScore = Integer.parseInt(read[2]);
 				engScore = Integer.parseInt(read[3]);
-				domeFore =read[4];
+				resiId =read[4];
 				
-				if(read[4] == "D"){
-					stuList.add(new DomeStudent(stuId,name,korScore,engScore,domeFore));
+				if(read[4].equals("D")){
+					stuList.add(new DomeStudent(stuId,name,korScore,engScore,resiId));
 				}else{
-					stuList.add(new ForeStudent(stuId,name,korScore,engScore,domeFore));
+					stuList.add(new ForeStudent(stuId,name,korScore,engScore,resiId));
 				}
-				
 			}
+			readClassInfo.close();
 		}		
 		catch(IOException e){
 			
@@ -53,6 +54,7 @@ public class ClassInfo {
 		ClassInfo classInfo = new ClassInfo();
 		
 		classInfo.initStudent();
+		
 				
 		System.out.println("");
 	}
@@ -66,8 +68,9 @@ abstract class Student{
 	private String stuId;
 	private int korScore;
 	private int engScore;
-//	private String resiId;
-		
+	private int sumScore;
+	private float avgScore;
+	
 	public String getName() {
 		return name;
 	}
@@ -92,7 +95,18 @@ abstract class Student{
 	public void setEngScore(int engScore) {
 		this.engScore = engScore;
 	}
-
+	public int getSumScore() {
+		return sumScore;
+	}
+	public void setSumScore() {
+		this.sumScore = korScore + engScore;
+	}
+	public float getAvgScore() {
+		return avgScore;
+	}
+	public void setAvgScore() {
+		this.avgScore = sumScore / 2;
+	}
 	public abstract void showInfo();//abstract멤버 함수가 존재하는 클래스는 abstract클래스
 	
 }
@@ -101,15 +115,18 @@ class DomeStudent extends Student{
 	public DomeStudent(){
 		
 	}
-	public DomeStudent(String stuId, String name, int korScore, int engScore, String domeFore) {
-		super.setName(name);
-		super.setStuId(stuId);
-		super.setKorScore(korScore);
-		super.setEngScore(engScore);
-		this.resiId=domeFore;
+	public DomeStudent(String stuId, String name, int korScore, int engScore, String resiId) {
+		super();
+		setName(name);
+		setStuId(stuId);
+		setKorScore(korScore);
+		setEngScore(engScore);
+		this.resiId=resiId;
+		setSumScore();
+		setAvgScore();
 	}
 	public void showInfo(){//abstract 함수를 상속받을때 구현하지 않으면 abstract클래스됨
-		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore"+getKorScore()+"engScore"+getEngScore()+"resiId=> "+resiId);
+		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore =>"+getKorScore()+"engScore =>"+getEngScore()+"resiId => "+resiId +"sumScore =>"+getSumScore()+"avgScore =>"+getAvgScore());
 	}
 }
 class ForeStudent extends Student{
@@ -117,14 +134,26 @@ class ForeStudent extends Student{
 	public ForeStudent(){
 		
 	}
-	public ForeStudent(String stuId, String name, int korScore, int engScore, String domeFore){
-		super.setName(name);
-		super.setStuId(stuId);
-		super.setKorScore(korScore);
-		super.setEngScore(engScore);
-		this.resiId=domeFore;
+	public ForeStudent(String stuId, String name, int korScore, int engScore, String resiId){
+		super();
+		setName(name);
+		setStuId(stuId);
+		setKorScore(korScore);
+		setEngScore(engScore);
+		this.resiId=resiId;
+		setSumScore();
+		setAvgScore();
 	}
 	public void showInfo(){
-		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore"+getKorScore()+"engScore"+getEngScore()+"resiId=> "+resiId);
+		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore"+getKorScore()+"engScore"+getEngScore()+"resiId=> "+resiId+"sumScore =>"+getSumScore()+"avgScore =>"+getAvgScore());
 	}
+}
+class AscendingObj implements Comparator<Student>{
+
+	@Override
+	public int compare(Student arg0, Student arg1) {
+		// TODO Auto-generated method stub
+		return (int)arg0.getAvgScore().comparTo((int)arg1.getAvgScore());
+	}
+	
 }
