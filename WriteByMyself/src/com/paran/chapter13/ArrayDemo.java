@@ -1,23 +1,13 @@
 package com.paran.chapter13;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class ArrayDemo {
-	public static void main(String[] args){
-		int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		ArrayDemo.reverseArrayValue(array);
-		for(int i:array){
-			System.out.print(i+" ");
-		}
-	}
-	static void reverseArrayValue(int[] array){
-		int i=0, s, j=array.length-1;
-		
-		while(i<array.length/2){
-			s = array[i];
-			array[i] = array[j];
-			array[j] = s;
-			i++;
-			j--;
-		}
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader("c:/dev/asd.txt"));
+		String line = br.readLine();
+		System.out.println(line.substring(14, 27));
 	}
 }
-
