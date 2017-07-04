@@ -14,17 +14,18 @@ import java.util.List;
 public class ClassInfo {
 	List<Student> stuList = new ArrayList<Student>();  /// 스튜던드라는 클래스 자료형을  
 	public void initStudent(){
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
-		stuList.add(new DomeStudent());
+		stuList1.add(new DomeStudent()_;
+		stuList1.add(new DomeStudent());
+		stuList1.add(new DomeStudent());
+		stuList1.add(new DomeStudent());
+		stuList2.add(new DomeStudent());
+		stuList2.add(new DomeStudent());
+		stuList2.add(new DomeStudent());
+		stuList2.add(new DomeStudent());
+		stuList3.add(new DomeStudent());
+		stuList3.add(new DomeStudent());
+		stuList3.add(new DomeStudent());
+		stuList3.add(new DomeStudent());
 	}
 }
 
@@ -41,6 +42,10 @@ abstract class Student{
 	}
 	public void setStuid(String stuid) {
 		this.stuid = stuid;
+			
+
+	
+		
 	}
 	private String stuid;
 	public abstract void showInfo();
@@ -49,6 +54,7 @@ abstract class Student{
 
 class DomeStudent extends Student {
 	String resitiD;
+	
 	
 	public void showInfo(){
 		System.out.println(name+stuid+resitiD); 
@@ -63,7 +69,22 @@ class foreStudent extends Student {
 	}
 }
 	
+
 	
+public static void main(String [] args){
+	
+	
+	  ClassInfo classInfo = new ClassInfo();
+	  classInfo.initStudent();
+	 }
+	 	
+	
+	
+}
+	
+	
+	
+}
 	
 	//상속을 받아서  국내 학생 주민번호  
 	// 외국인 학생은  외국인 번호 
