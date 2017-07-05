@@ -2,6 +2,8 @@ package com.paran.chapter21;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,13 +33,14 @@ public class ClassInfo {
 				engScore = Integer.parseInt(read[3]);
 				domeFore =read[4];
 				
-				if(read[4] == "D"){
+				if(read[4].equals("D")){
 					stuList.add(new DomeStudent(stuId,name,korScore,engScore,domeFore));
 				}else{
 					stuList.add(new ForeStudent(stuId,name,korScore,engScore,domeFore));
 				}
 				
 			}
+			readClassInfo.close();
 		}		
 		catch(IOException e){
 			
@@ -53,6 +56,11 @@ public class ClassInfo {
 		ClassInfo classInfo = new ClassInfo();
 		
 		classInfo.initStudent();
+		
+		Collections.sort(classInfo.stuList, new Descending());
+		for(Student ele : classInfo.stuList){
+			ele.showInfo();
+		}
 				
 		System.out.println("");
 	}
@@ -66,6 +74,30 @@ abstract class Student{
 	private String stuId;
 	private int korScore;
 	private int engScore;
+	private int sumScore;
+	private float avgScore;
+	private int rankClassStu;
+	
+	public int getSumScore() {
+		return sumScore;
+	}
+	public void setSumScore() {
+		this.sumScore = korScore + engScore;
+	}
+	public float getAvgScore() {
+		return avgScore;
+	}
+	public void setAvgScore() {
+		this.avgScore = sumScore/2;
+	}
+	public int getRankClassStu() {
+		return rankClassStu;
+	}
+	public void setRankClassStu() {
+		this.rankClassStu = rankClassStu;
+	}
+
+	
 //	private String resiId;
 		
 	public String getName() {
@@ -102,29 +134,45 @@ class DomeStudent extends Student{
 		
 	}
 	public DomeStudent(String stuId, String name, int korScore, int engScore, String domeFore) {
-		super.setName(name);
-		super.setStuId(stuId);
-		super.setKorScore(korScore);
-		super.setEngScore(engScore);
+		super();
+		setName(name);
+		setStuId(stuId);
+		setKorScore(korScore);
+		setEngScore(engScore);
+		setSumScore();
+		setAvgScore();
 		this.resiId=domeFore;
 	}
 	public void showInfo(){//abstract 함수를 상속받을때 구현하지 않으면 abstract클래스됨
-		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore"+getKorScore()+"engScore"+getEngScore()+"resiId=> "+resiId);
+		System.out.println("name => "+getName() +" stuId =>"+getStuId()+" korScore =>"+getKorScore()+" engScore => "+getEngScore()+" sumScore => "+getSumScore()+" avgScore =>"+getAvgScore()+" resiId => "+resiId);
 	}
 }
+
 class ForeStudent extends Student{
-	private String resiId;
+	private String foreId;
 	public ForeStudent(){
 		
 	}
 	public ForeStudent(String stuId, String name, int korScore, int engScore, String domeFore){
-		super.setName(name);
-		super.setStuId(stuId);
-		super.setKorScore(korScore);
-		super.setEngScore(engScore);
-		this.resiId=domeFore;
+		super();
+		setName(name);
+		setStuId(stuId);
+		setKorScore(korScore);
+		setEngScore(engScore);
+		setSumScore();
+		setAvgScore();
+		this.foreId=domeFore;
 	}
 	public void showInfo(){
-		System.out.println("name => "+getName() +" stuId =>"+getStuId()+"korScore"+getKorScore()+"engScore"+getEngScore()+"resiId=> "+resiId);
+		System.out.println("name => "+getName() +" stuId =>"+getStuId()+" korScore =>"+getKorScore()+" engScore => "+getEngScore()+" sumScore => "+getSumScore()+" avgScore =>"+getAvgScore()+" foreId => "+foreId);	}
+}
+
+class Descending implements Comparator<Student>{
+	
+	@Override
+	public int compare(Student o1, Student o2) {
+		// TODO Auto-generated method stub
+		return o1.getAvgScore() > o2.getAvgScore() ? -1 : o1.getAvgScore() > o2.getAvgScore() ? 1:0;
 	}
+	
 }
