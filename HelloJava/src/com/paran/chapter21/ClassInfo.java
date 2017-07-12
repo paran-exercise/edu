@@ -18,7 +18,7 @@ public class ClassInfo {
 	
 	public void initStudent(){
 		String filePath = "C:\\Users\\2강005\\git\\edu\\HelloJava\\src\\com\\paran\\chapter21\\classinformation.txt";
-		ClassInfo obj = new ClassInfo();
+		
 		try{
 			BufferedReader readClassInfo = new BufferedReader(new FileReader(filePath));
 			
