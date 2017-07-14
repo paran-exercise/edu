@@ -49,7 +49,7 @@ public class GradeInfo {
 		}
 		sort(students, students.size());
 		for(int i = 0; i < stuNum; i++){  
-			students.get(i).totalRank = i+1;
+			students.get(i).overallRank = i+1;
 		}		
 		for(String className : classNames){
 			ArrayList<Student> members = new ArrayList<Student>();
@@ -85,7 +85,7 @@ public class GradeInfo {
 			for(int j = 0; j<students.get(i).subNum; j++){
 				System.out.print(String.format("%s => %s\t", students.get(i).getGrade(j)[0], students.get(i).getGrade(j)[1]));
 			}
-			System.out.print(String.format("Average => %.2f\tClass ranking => %d\tOverall ranking => %d", students.get(i).stuAvg, students.get(i).classRank, students.get(i).totalRank)); //!!!!
+			System.out.print(String.format("Average => %.2f\tClass ranking => %d\tOverall ranking => %d", students.get(i).stuAvg, students.get(i).classRank, students.get(i).overallRank)); //!!!!
 			System.out.println();
 		}
 	}	
@@ -99,7 +99,7 @@ class Student{
 	int subNum = 0;
 	float stuAvg;
 	int classRank = 0;
-	int totalRank = 0;
+	int overallRank = 0;
 	public Student(String stuName, String stuClass){
 		this.stuName = stuName;
 		this.stuClass = stuClass;		
