@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>우편 번호 검색</title>
+<script type = "text/javascript" src = "./address.json"></script>
+<script>
+var setSelect = function(ids) {
+	// 모든 셀렉트 박스를 불러오고, 모든 함수를 처리하는 구문
+	for ( var cnt = 0; cnt < ids.length; cnt++ ) {
+		var element = document.getElementById(ids[cnt]);
+		setAllSelectFirstOption(element);
+		addFirstSelectBoxOption(element);
+	}
+	
+	// 모든 셀렉트 박스에 '선택' 넣어주는 함수
+	function setAllSelectFirstOption(element) {
+		var optionTag = document.createElement("option");
+		optionTag.value = "";
+		optionTag.text = "선택";
+		element.add(optionTag);
+	}
+	
+	// 첫번째 셀렉트박스에 옵션 넣어주는 함수
+	function addFirstSelectBoxOption(element) {
+		for ( var i = 0; i < address.cityList.length; i++ ) {
+			if ( element == document.getElementById(ids[0]) ) {
+				if ( address.cityList[i].pid == "" ) {
+					var optionTag = document.createElement("option");
+					optionTag.value = address.cityList[i].id;
+					optionTag.text = address.cityList[i].name;
+					element.add(optionTag);
+				}
+			}
+		}
+		selectChangeEventListener(element);
+	}
+	
+	// 이벤트 처리
+	function selectChangeEventListener(element) {
+		element.addEventListener("change", function(){
+			// 현재의 셀렉트 박스 제외한 나머지 셀렉트 박스는 초기화하고
+			for ( var i = 0; i < ids.length-1; i++ ) {
+				if ( element === document.getElementById(ids[i])) {
+					for ( var j = i+1; j < ids.length; j++ ) {
+						document.getElementById(ids[j]).length = 1;
+					}
+				}
+			}
+			selectId = element.value;	// 선택한 element의 value 저장
+			
+			//선택한 element의 value가 "" 이면 리턴, 아니면 데이터를 넣어줌
+			for ( var i = 0;i < address.cityList.length; i++ ) {
+				if ( selectId == "" ) {
+					return;
+				}
+				else if ( selectId === address.cityList[i].pid ) {
+					var optionTag = document.createElement("option");
+					optionTag.value = address.cityList[i].id;
+					optionTag.text = address.cityList[i].name;
+					element.nextElementSibling.add(optionTag);
+				}
+			}
+		});
+	}
+}
+
+window.onload = function() {
+	setSelect(["first", "second", "third", "fourth"]);
+}
+
+</script>
+</head>
+<body>
+	<select id="first"></select>
+	<select id="second"></select>
+	<select id="third"></select>
+	<select id="fourth"></select>
+</body>
+</html>
