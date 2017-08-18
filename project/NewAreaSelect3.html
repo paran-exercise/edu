@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우편 번호 검색</title>
 <script type = "text/javascript" src = "./address.json"></script>
 <script>
 var setSelect = function(ids) {
@@ -50,12 +50,11 @@ var setSelect = function(ids) {
 			selectId = element.value;	// 선택한 element의 value 저장
 			
 			//선택한 element의 value가 "" 이면 리턴, 아니면 데이터를 넣어줌
-			var selectValue = element.value;
 			for ( var i = 0;i < address.cityList.length; i++ ) {
 				if ( selectId == "" ) {
 					return;
 				}
-				else if ( selectValue === address.cityList[i].pid ) {
+				else if ( selectId === address.cityList[i].pid ) {
 					var optionTag = document.createElement("option");
 					optionTag.value = address.cityList[i].id;
 					optionTag.text = address.cityList[i].name;
@@ -67,14 +66,15 @@ var setSelect = function(ids) {
 }
 
 window.onload = function() {
-	setSelect(selectArray = ["first", "second", "third"]);
+	setSelect(["first", "second", "third", "fourth"]);
 }
 
 </script>
 </head>
-<body id="form">
+<body>
 	<select id="first"></select>
 	<select id="second"></select>
 	<select id="third"></select>
+	<select id="fourth"></select>
 </body>
 </html>
